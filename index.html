@@ -6,19 +6,34 @@
   <title>LandlordProof • Move-In & Move-Out Evidence Vault for Tenants</title>
   <meta name="description" content="Protect your security deposit with tamper-verified GPS timestamp evidence photos, 50-state statutory demand letters, and courtroom-ready PDF dossiers.">
   <link rel="icon" type="image/png" href="assets/icon.png">
+  
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://landlordproof.com/">
+  <meta property="og:title" content="LandlordProof • Move-In & Move-Out Evidence Vault for Tenants">
+  <meta property="og:description" content="Protect your security deposit with tamper-verified GPS timestamp evidence photos, 50-state statutory demand letters, and courtroom-ready PDF dossiers.">
+  <meta property="og:image" content="https://landlordproof.com/assets/icon.png">
+
   <style>
     :root {
-      --bg: #0A0F1D;
+      --bg: #070B14;
+      --bg-surface: #0E1626;
       --card-bg: rgba(255, 255, 255, 0.035);
       --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-hover: rgba(242, 102, 38, 0.4);
       --accent: #F26626;
-      --accent-glow: rgba(242, 102, 38, 0.25);
+      --accent-hover: #E04E15;
+      --accent-glow: rgba(242, 102, 38, 0.28);
       --gold: #F59E0B;
       --success: #10B981;
       --text: #F8FAFC;
       --text-muted: #94A3B8;
+      --text-dim: #64748B;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
@@ -27,119 +42,340 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-    
+
+    /* Ambient Background Glows */
+    .ambient-glow-1 {
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 850px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(242, 102, 38, 0.22) 0%, rgba(245, 158, 11, 0.08) 45%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-glow-2 {
+      position: absolute;
+      top: 1300px;
+      right: 5%;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(242, 102, 38, 0.12) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
     /* Navigation */
     header {
-      padding: 24px 0;
+      padding: 18px 0;
       border-bottom: 1px solid var(--card-border);
       position: sticky;
       top: 0;
-      background: rgba(10, 15, 29, 0.85);
+      background: rgba(7, 11, 20, 0.88);
       backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       z-index: 100;
+      transition: all 0.2s ease;
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; }
-    .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; font-weight: 800; font-size: 21px; }
-    .logo-img { width: 40px; height: 40px; border-radius: 10px; box-shadow: 0 4px 16px var(--accent-glow); }
-    .nav-links { display: flex; align-items: center; gap: 24px; }
-    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: color 0.2s; }
-    .nav-links a:hover { color: #fff; }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 800;
+      font-size: 21px;
+      letter-spacing: -0.01em;
+    }
+
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
     .nav-cta {
-      background: linear-gradient(135deg, var(--accent), #D44211);
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
       color: #fff !important;
       padding: 9px 18px;
-      border-radius: 8px;
+      border-radius: 9px;
       font-weight: 700 !important;
-      box-shadow: 0 2px 10px var(--accent-glow);
+      font-size: 14px;
+      box-shadow: 0 2px 12px var(--accent-glow);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(242, 102, 38, 0.45);
+    }
+
     /* Hero */
     .hero {
-      padding: 80px 0 60px;
+      padding: 70px 0 50px;
       text-align: center;
       position: relative;
     }
+
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       background: rgba(242, 102, 38, 0.12);
-      border: 1px solid rgba(242, 102, 38, 0.3);
+      border: 1px solid rgba(242, 102, 38, 0.35);
       color: var(--accent);
-      padding: 6px 16px;
-      border-radius: 20px;
+      padding: 6px 18px;
+      border-radius: 30px;
       font-size: 13px;
       font-weight: 700;
       margin-bottom: 24px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
+
     .hero h1 {
-      font-size: clamp(38px, 6vw, 62px);
+      font-size: clamp(36px, 5.8vw, 62px);
       font-weight: 900;
-      line-height: 1.1;
+      line-height: 1.12;
       letter-spacing: -1.5px;
-      max-width: 860px;
+      max-width: 880px;
       margin: 0 auto 20px;
       background: linear-gradient(180deg, #FFFFFF 20%, #CBD5E1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
     .hero p {
-      font-size: clamp(17px, 2.5vw, 20px);
+      font-size: clamp(17px, 2.3vw, 20px);
       color: var(--text-muted);
-      max-width: 680px;
+      max-width: 700px;
       margin: 0 auto 36px;
     }
+
+    /* Store Buttons */
     .hero-actions {
       display: flex;
       justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 48px;
+      margin-bottom: 30px;
     }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #E04E15);
+
+    .btn-store {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1.5px solid var(--card-border);
+      border-radius: 14px;
+      padding: 10px 22px;
       color: #fff;
-      padding: 15px 32px;
-      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-store:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      background: rgba(242, 102, 38, 0.08);
+      box-shadow: 0 8px 24px rgba(242, 102, 38, 0.25);
+    }
+
+    .btn-store svg {
+      width: 26px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    .btn-store .btn-text {
+      text-align: left;
+    }
+
+    .btn-store .btn-sub {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      display: block;
+      line-height: 1.1;
+    }
+
+    .btn-store .btn-main {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.2;
+      display: block;
+    }
+
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 50px;
+    }
+
+    .trust-badges span.dot {
+      color: var(--text-dim);
+    }
+
+    /* Interactive CSS Phone Mockup */
+    .mockup-wrapper {
+      max-width: 780px;
+      margin: 0 auto 70px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px var(--accent-glow);
+    }
+
+    .phone-container {
+      background: #0B1120;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 24px;
+      text-align: left;
+    }
+
+    .phone-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 18px;
+    }
+
+    .phone-title {
       font-size: 16px;
       font-weight: 700;
-      text-decoration: none;
-      box-shadow: 0 4px 20px var(--accent-glow);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(242, 102, 38, 0.4);
-    }
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
       color: #fff;
-      padding: 15px 28px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 600;
-      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timer-badge {
+      background: rgba(239, 68, 68, 0.16);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #EF4444;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 20px;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      transition: background 0.2s;
+      gap: 6px;
     }
-    .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
-    
+
+    .law-banner {
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 3px solid var(--gold);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: #FDE68A;
+      margin-bottom: 20px;
+    }
+
+    .evidence-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+
+    .stamp-overlay {
+      background: #000;
+      border: 1px solid rgba(242, 102, 38, 0.4);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 11.5px;
+      color: #38BDF8;
+      line-height: 1.5;
+    }
+
+    .stamp-overlay .stamp-title {
+      color: var(--accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .quick-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .quick-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      color: #E2E8F0;
+    }
+
+    .quick-chip.warning {
+      background: rgba(242, 102, 38, 0.15);
+      border-color: rgba(242, 102, 38, 0.4);
+      color: #FFEDD5;
+      font-weight: 600;
+    }
+
     /* Stats Bar */
     .stats-bar {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      margin: 40px 0 80px;
+      margin: 20px 0 70px;
     }
+
     .stat-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -147,33 +383,46 @@
       border-radius: 14px;
       text-align: center;
     }
-    .stat-num { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 4px; }
-    .stat-label { font-size: 13px; color: var(--text-muted); }
-    
+
+    .stat-num {
+      font-size: 34px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 13.5px;
+      color: var(--text-muted);
+    }
+
     /* Features Grid */
     .section-title {
       text-align: center;
       margin-bottom: 48px;
     }
+
     .section-title h2 {
-      font-size: 34px;
+      font-size: 36px;
       font-weight: 800;
       margin-bottom: 12px;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.8px;
     }
+
     .section-title p {
       color: var(--text-muted);
-      font-size: 16px;
-      max-width: 600px;
+      font-size: 16.5px;
+      max-width: 620px;
       margin: 0 auto;
     }
-    
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 24px;
       margin-bottom: 80px;
     }
+
     .card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -182,10 +431,12 @@
       position: relative;
       transition: border-color 0.2s, transform 0.2s;
     }
+
     .card:hover {
-      border-color: rgba(242, 102, 38, 0.3);
+      border-color: var(--card-border-hover);
       transform: translateY(-2px);
     }
+
     .card-icon {
       width: 48px;
       height: 48px;
@@ -198,10 +449,69 @@
       font-size: 24px;
       margin-bottom: 20px;
     }
-    .card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
-    .card p { color: var(--text-muted); font-size: 14.5px; line-height: 1.6; }
 
-    /* Comparison Table */
+    .card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    /* Comparison / How It Works */
+    .steps-section {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 50px 36px;
+      margin-bottom: 80px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 36px;
+    }
+
+    .step-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px;
+      position: relative;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .step-box h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step-box p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Pricing Section */
     .pricing-section {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--card-border);
@@ -210,6 +520,7 @@
       margin-bottom: 80px;
       text-align: center;
     }
+
     .pricing-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -217,6 +528,7 @@
       margin-top: 36px;
       text-align: left;
     }
+
     .pricing-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
@@ -225,11 +537,13 @@
       display: flex;
       flex-direction: column;
     }
+
     .pricing-card.featured {
       border-color: var(--accent);
       box-shadow: 0 4px 30px var(--accent-glow);
       position: relative;
     }
+
     .pricing-badge {
       position: absolute;
       top: -12px;
@@ -242,13 +556,129 @@
       border-radius: 20px;
       text-transform: uppercase;
     }
-    .pricing-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-    .pricing-price { font-size: 38px; font-weight: 900; margin-bottom: 16px; }
-    .pricing-price span { font-size: 15px; color: var(--text-muted); font-weight: 500; }
-    .pricing-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; min-height: 42px; }
-    .pricing-features { list-style: none; margin-bottom: 30px; flex-grow: 1; }
-    .pricing-features li { padding: 6px 0; font-size: 14px; display: flex; align-items: center; gap: 8px; color: #CBD5E1; }
-    .pricing-features li::before { content: "✓"; color: var(--success); font-weight: 800; }
+
+    .pricing-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .pricing-price {
+      font-size: 38px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .pricing-price span {
+      font-size: 15px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .pricing-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+      min-height: 42px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 30px;
+      flex-grow: 1;
+    }
+
+    .pricing-features li {
+      padding: 6px 0;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #CBD5E1;
+    }
+
+    .pricing-features li::before {
+      content: "✓";
+      color: var(--success);
+      font-weight: 800;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      margin-bottom: 80px;
+    }
+
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item:hover {
+      border-color: var(--card-border-hover);
+    }
+
+    .faq-summary {
+      padding: 20px 24px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+    }
+
+    .faq-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-summary::after {
+      content: "+";
+      font-size: 20px;
+      color: var(--accent);
+      font-weight: 800;
+      transition: transform 0.2s;
+    }
+
+    details[open] .faq-summary::after {
+      content: "−";
+    }
+
+    .faq-content {
+      padding: 0 24px 22px;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: linear-gradient(135deg, rgba(242, 102, 38, 0.16) 0%, rgba(14, 22, 38, 0.8) 100%);
+      border: 1px solid rgba(242, 102, 38, 0.3);
+      border-radius: 20px;
+      padding: 50px 30px;
+      text-align: center;
+      margin-bottom: 80px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .cta-banner p {
+      color: var(--text-muted);
+      font-size: 17px;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
 
     /* Footer */
     footer {
@@ -258,13 +688,45 @@
       font-size: 14px;
       text-align: center;
     }
-    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: #fff; }
-    .legal-notice { font-size: 12px; max-width: 700px; margin: 16px auto 0; line-height: 1.5; color: #64748B; }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .legal-notice {
+      font-size: 12px;
+      max-width: 720px;
+      margin: 16px auto 0;
+      line-height: 1.5;
+      color: #64748B;
+    }
+
+    @media (max-width: 768px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-store { width: 100%; justify-content: center; }
+      .nav-links a:not(.nav-cta) { display: none; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Ambient Light Accents -->
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
 
   <!-- Navigation -->
   <header>
@@ -275,7 +737,9 @@
       </a>
       <div class="nav-links">
         <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
         <a href="#passes">Lease Passes</a>
+        <a href="#faq">FAQ</a>
         <a href="terms.html">Terms</a>
         <a href="privacy.html">Privacy</a>
         <a href="mailto:support@landlordproof.com" class="nav-cta">Contact Support</a>
@@ -290,14 +754,83 @@
       <h1>Protect Your $2,000 Deposit With Indelible Evidence</h1>
       <p>The average security deposit deduction is $650. LandlordProof burns atomic timestamps and GPS coordinates directly into evidence pixels to prove pre-existing rental conditions on Day 1.</p>
       
+      <!-- Store Buttons -->
       <div class="hero-actions">
-        <a href="#passes" class="btn-primary">
-          <span>Get a Lease Pass ($9.99)</span>
-          <span>→</span>
+        <!-- Google Play -->
+        <a href="#passes" class="btn-store">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a2.404 2.404 0 0 1-.61-1.636V3.45c0-.623.224-1.205.61-1.636z" fill="#00E676"/>
+            <path d="M14.842 13.05l2.368-2.368-11.83-6.83 9.462 9.198z" fill="#FFD54F"/>
+            <path d="M14.842 14.948l-9.462 9.2 11.83-6.83-2.368-2.37z" fill="#FF1744"/>
+            <path d="M16.227 13.563l3.208 1.852a1.868 1.868 0 0 0 0-3.238l-3.208 1.852z" fill="#00B0FF"/>
+          </svg>
+          <div class="btn-text">
+            <span class="btn-sub">Available For</span>
+            <span class="btn-main">Android / Google Play</span>
+          </div>
         </a>
-        <a href="mailto:support@landlordproof.com" class="btn-secondary">
-          <span>Contact Support</span>
+
+        <!-- Apple App Store -->
+        <a href="#passes" class="btn-store">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.13.64-2.79 1.41-.57.66-.99 1.72-.94 2.76 1.07.08 2.11-.55 2.72-1.3"/>
+          </svg>
+          <div class="btn-text">
+            <span class="btn-sub">Available For</span>
+            <span class="btn-main">iOS / Apple App Store</span>
+          </div>
         </a>
+      </div>
+
+      <!-- Trust Badges -->
+      <div class="trust-badges">
+        <span>🔒 100% On-Device Privacy</span>
+        <span class="dot">•</span>
+        <span>📍 GPS & Timestamp Burn</span>
+        <span class="dot">•</span>
+        <span>⚖️ 50-State Statutory Laws</span>
+        <span class="dot">•</span>
+        <span>📑 Courtroom-Ready PDF</span>
+      </div>
+
+      <!-- Live Interactive CSS App Showcase -->
+      <div class="mockup-wrapper">
+        <div class="phone-container">
+          <div class="phone-header">
+            <div class="phone-title">
+              <span>🏠 1044 Sunset Blvd, Apt 4B</span>
+            </div>
+            <div class="timer-badge">
+              <span>⏱️ 71h : 42m : 18s left</span>
+            </div>
+          </div>
+
+          <div class="law-banner">
+            <strong>California Statutory Law (Civil Code § 1950.5):</strong> Landlord must return deposit within 21 days with itemized receipts. Statutory bad-faith penalty: <strong>2x deposit amount</strong>.
+          </div>
+
+          <div class="evidence-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <span style="font-weight: 700; font-size: 14.5px;">📸 Living Room • Baseboard Water Stain</span>
+              <span style="font-size: 11px; background: rgba(16, 185, 129, 0.15); color: #10B981; padding: 2px 8px; border-radius: 12px; font-weight: 700;">PRE-EXISTING VERIFIED</span>
+            </div>
+            <div class="stamp-overlay">
+              <div class="stamp-title">LANDLORDPROOF VERIFIED EVIDENCE STAMP</div>
+              <div>LOC: 34.0522° N, 118.2437° W (Los Angeles, CA)</div>
+              <div>DATE: OCT 30, 2026 09:14:22 PDT (UTC-7)</div>
+              <div>HASH: SHA256#9F2C7A810E94B • TAMPER-SEALED</div>
+            </div>
+          </div>
+
+          <div style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 6px;">Common Landlord Deduction Traps Monitored:</div>
+          <div class="quick-chips">
+            <div class="quick-chip warning">⚠️ Stove Drip Pans</div>
+            <div class="quick-chip warning">⚠️ Oven Racks & Glass</div>
+            <div class="quick-chip warning">⚠️ Tub Grout Mold</div>
+            <div class="quick-chip">Blind Cords & Slats</div>
+            <div class="quick-chip">Doorstops & Wall Dings</div>
+          </div>
+        </div>
       </div>
 
       <!-- Quick Stats -->
@@ -322,11 +855,39 @@
     </div>
   </section>
 
+  <!-- How It Works Section -->
+  <section class="container" id="how-it-works">
+    <div class="steps-section">
+      <div class="section-title" style="margin-bottom: 24px;">
+        <h2>The 3-Step Deposit Defense Pipeline</h2>
+        <p>Built specifically to hold unethical property managers accountable under state law.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-box">
+          <div class="step-num">1</div>
+          <h4>Rapid Walkthrough Inspection</h4>
+          <p>Walk your rental on Day 1. Tap quick deduction chips (drip pans, blinds, grout, trim) and snap clear photos of existing chips, scuffs, and flaws.</p>
+        </div>
+        <div class="step-box">
+          <div class="step-num">2</div>
+          <h4>Permanent GPS & Time Burn</h4>
+          <p>Every photo is burned with atomic timestamp and GPS data directly into the pixels. Landlords cannot claim you caused the defect months later.</p>
+        </div>
+        <div class="step-box">
+          <div class="step-num">3</div>
+          <h4>Formal PDF Dossier & Demand</h4>
+          <p>Generate formal PDF reports citing exact state statutes. If your deposit is wrongfully withheld, dispatch an automated legal demand letter citing treble penalties.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Core Features -->
   <section class="container" id="features">
     <div class="section-title">
       <h2>Everything You Need to Defend Your Deposit</h2>
-      <p>Built for tenants, students, travel nurses, and renters nationwide.</p>
+      <p>Built for tenants, college students, travel nurses, and renters nationwide.</p>
     </div>
 
     <div class="grid">
@@ -372,7 +933,7 @@
   <section class="container" id="passes">
     <div class="pricing-section">
       <h2>Simple, Transparent Protection</h2>
-      <p style="color: var(--text-muted); margin-top: 8px;">No hidden fees. Available for iOS and Android.</p>
+      <p style="color: var(--text-muted); margin-top: 8px;">No hidden fees. Full lifetime export for each rental.</p>
 
       <div class="pricing-grid">
         <!-- Single Lease Pass -->
@@ -401,10 +962,66 @@
             <li>Unlimited rental properties</li>
             <li>Ideal for travel nurses & annual movers</li>
             <li>Continuous 50-state statute updates</li>
-            <li>Family / Roommate device synchronization</li>
+            <li>Multi-device synchronization</li>
             <li>Priority developer email support</li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="container faq-section" id="faq">
+    <div class="section-title">
+      <h2>Frequently Asked Questions</h2>
+      <p>Have questions about LandlordProof or security deposit rights?</p>
+    </div>
+
+    <div style="max-width: 800px; margin: 0 auto;">
+      <details class="faq-item" open>
+        <summary class="faq-summary">How does LandlordProof protect my security deposit?</summary>
+        <div class="faq-content">
+          LandlordProof creates an indisputable photographic and statutory paper trail of your apartment's condition on Day 1. By stamping exact GPS coordinates, UTC timestamps, and cryptographic tamper seals into photo pixels, landlords cannot falsely claim that pre-existing damage was caused by you during your tenancy.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">Why can't I just take regular photos with my phone camera?</summary>
+        <div class="faq-content">
+          Standard smartphone camera photos only store metadata (EXIF data) that can be easily edited or stripped when uploaded or messaged. LandlordProof burns indelible, visible watermarks directly into the photo raster along with a courtroom-formatted inspection dossier and state statutory citations that judges and small-claims arbiters take seriously.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">If I purchase a Single Lease Pass, how do I purchase another lease pass later?</summary>
+        <div class="faq-content">
+          Single Lease Passes are configured as consumable in-app purchases. Whenever you move to a new rental property, you can simply tap "Get Lease Pass" to purchase a pass for your new home right on the same device without needing a subscription.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">Are my walkthrough photos uploaded to any servers?</summary>
+        <div class="faq-content">
+          No! LandlordProof is built on a 100% offline-first, local privacy architecture. All property photos, notes, and deposit amounts remain securely on your phone. Nothing is ever sent to external cloud servers, advertisers, or trackers.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">What happens if my landlord fails to return my deposit on time?</summary>
+        <div class="faq-content">
+          LandlordProof tracks your state's statutory return deadline (e.g. 14 days in SD/VT, 21 days in CA, 30 days in TX/FL). If the deadline passes without your deposit or an itemized deduction accounting, LandlordProof automatically drafts a formal Statutory Demand Letter citing exact state code and statutory penalties (up to 2x or 3x treble damages in court).
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="container">
+    <div class="cta-banner">
+      <h2>Don't Leave Your $2,000 Deposit to Chance</h2>
+      <p>Document your rental condition in under 15 minutes and lock in peace of mind for the duration of your lease.</p>
+      <div class="hero-actions" style="margin-bottom: 0;">
+        <a href="#passes" class="nav-cta" style="padding: 14px 28px; font-size: 16px;">Get LandlordProof Today</a>
       </div>
     </div>
   </section>
@@ -414,11 +1031,14 @@
     <div class="container">
       <div class="footer-links">
         <a href="/">Home</a>
+        <a href="#features">Features</a>
+        <a href="#passes">Lease Passes</a>
+        <a href="#faq">FAQ</a>
         <a href="terms.html">Terms of Service & EULA</a>
         <a href="privacy.html">Privacy Policy</a>
         <a href="mailto:support@landlordproof.com">support@landlordproof.com</a>
       </div>
-      <p>&copy; 2026 LandlordProof. All rights reserved.</p>
+      <p>&copy; 2026 LandlordProof. All rights reserved. 100% On-Device Private Evidence Vault.</p>
       <p class="legal-notice">
         Notice: LandlordProof provides condition documentation software, photographic timestamp watermarking, and statutory reference information. LandlordProof is not a law firm and does not provide legal advice or legal representation. Consult a licensed attorney in your state for formal dispute resolution.
       </p>
