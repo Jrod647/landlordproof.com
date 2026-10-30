@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LandlordProof • Move-In & Move-Out Evidence Vault for Tenants</title>
+  <meta name="description" content="Protect your security deposit with tamper-verified GPS timestamp evidence photos, 50-state statutory demand letters, and courtroom-ready PDF dossiers.">
+  <link rel="icon" type="image/png" href="assets/icon.png">
+  <style>
+    :root {
+      --bg: #0A0F1D;
+      --card-bg: rgba(255, 255, 255, 0.035);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent: #F26626;
+      --accent-glow: rgba(242, 102, 38, 0.25);
+      --gold: #F59E0B;
+      --success: #10B981;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Navigation */
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      background: rgba(10, 15, 29, 0.85);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; }
+    .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; font-weight: 800; font-size: 21px; }
+    .logo-img { width: 40px; height: 40px; border-radius: 10px; box-shadow: 0 4px 16px var(--accent-glow); }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14.5px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--accent), #D44211);
+      color: #fff !important;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-weight: 700 !important;
+      box-shadow: 0 2px 10px var(--accent-glow);
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(242, 102, 38, 0.12);
+      border: 1px solid rgba(242, 102, 38, 0.3);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 62px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      max-width: 860px;
+      margin: 0 auto 20px;
+      background: linear-gradient(180deg, #FFFFFF 20%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: clamp(17px, 2.5vw, 20px);
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #E04E15);
+      color: #fff;
+      padding: 15px 32px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 20px var(--accent-glow);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(242, 102, 38, 0.4);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: #fff;
+      padding: 15px 28px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.08); }
+    
+    /* Stats Bar */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin: 40px 0 80px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 24px;
+      border-radius: 14px;
+      text-align: center;
+    }
+    .stat-num { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+    .stat-label { font-size: 13px; color: var(--text-muted); }
+    
+    /* Features Grid */
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-title h2 {
+      font-size: 34px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 30px;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: rgba(242, 102, 38, 0.3);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(242, 102, 38, 0.12);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+    .card p { color: var(--text-muted); font-size: 14.5px; line-height: 1.6; }
+
+    /* Comparison Table */
+    .pricing-section {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 50px 36px;
+      margin-bottom: 80px;
+      text-align: center;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 36px;
+      text-align: left;
+    }
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 4px 30px var(--accent-glow);
+      position: relative;
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      right: 24px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+    .pricing-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .pricing-price { font-size: 38px; font-weight: 900; margin-bottom: 16px; }
+    .pricing-price span { font-size: 15px; color: var(--text-muted); font-weight: 500; }
+    .pricing-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 24px; min-height: 42px; }
+    .pricing-features { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+    .pricing-features li { padding: 6px 0; font-size: 14px; display: flex; align-items: center; gap: 8px; color: #CBD5E1; }
+    .pricing-features li::before { content: "✓"; color: var(--success); font-weight: 800; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 48px 0;
+      color: var(--text-muted);
+      font-size: 14px;
+      text-align: center;
+    }
+    .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .legal-notice { font-size: 12px; max-width: 700px; margin: 16px auto 0; line-height: 1.5; color: #64748B; }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="container nav">
+      <a href="/" class="logo-container">
+        <img src="assets/icon.png" alt="LandlordProof Logo" class="logo-img">
+        <span>LandlordProof</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#passes">Lease Passes</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="mailto:support@landlordproof.com" class="nav-cta">Contact Support</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">🛡️ Security Deposit Defense Software</div>
+      <h1>Protect Your $2,000 Deposit With Indelible Evidence</h1>
+      <p>The average security deposit deduction is $650. LandlordProof burns atomic timestamps and GPS coordinates directly into evidence pixels to prove pre-existing rental conditions on Day 1.</p>
+      
+      <div class="hero-actions">
+        <a href="#passes" class="btn-primary">
+          <span>Get a Lease Pass ($9.99)</span>
+          <span>→</span>
+        </a>
+        <a href="mailto:support@landlordproof.com" class="btn-secondary">
+          <span>Contact Support</span>
+        </a>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="stats-bar">
+        <div class="stat-card">
+          <div class="stat-num">$650</div>
+          <div class="stat-label">Average Move-Out Withholding</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">72 Hours</div>
+          <div class="stat-label">Critical Notice Window</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">50 States</div>
+          <div class="stat-label">Statutory Deposit Law Database</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">On-Device Local Privacy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features -->
+  <section class="container" id="features">
+    <div class="section-title">
+      <h2>Everything You Need to Defend Your Deposit</h2>
+      <p>Built for tenants, students, travel nurses, and renters nationwide.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">⏱️</div>
+        <h3>72-Hour Notice Countdown</h3>
+        <p>State laws mandate immediate reporting of move-in defects. Our live countdown timer ensures your formal inspection dossier is submitted before landlords can deny responsibility.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <h3>Permanent GPS & Timestamp Burn</h3>
+        <p>Photos are stamped with permanent on-image watermarks containing UTC/local time, street address, and exact coordinates—preventing landlords from disputing when damage existed.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">⚖️</div>
+        <h3>Side-by-Side Move-Out Defense</h3>
+        <p>Compare move-out surrender photos side-by-side with Day-1 move-in evidence to prove ordinary wear-and-tear versus pre-existing damage.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📑</div>
+        <h3>Courtroom-Ready PDF Dossier</h3>
+        <p>Generate formal multi-page PDF inspection dossiers citing state tenant statutes, landlord notification clauses, and itemized damage breakdown complete with signature lines.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>Room Deduction Trap Checklists</h3>
+        <p>Quick-tap chips highlight the #1 items landlords deduct for—stove drip pans, oven racks, tub grout, blind cords, and doorstops—so you never miss an inspection trap.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📜</div>
+        <h3>50-State Statutory Demand Letters</h3>
+        <p>Landlord late returning your deposit? Generate a formal demand letter citing exact state penalty statutes (up to 2x or 3x treble damages in small claims court).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lease Passes Section -->
+  <section class="container" id="passes">
+    <div class="pricing-section">
+      <h2>Simple, Transparent Protection</h2>
+      <p style="color: var(--text-muted); margin-top: 8px;">No hidden fees. Available for iOS and Android.</p>
+
+      <div class="pricing-grid">
+        <!-- Single Lease Pass -->
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-title">Single Lease Pass</div>
+          <div class="pricing-price">$9.99 <span>one-time</span></div>
+          <div class="pricing-desc">Lifetime protection & full PDF export for your current rental lease.</div>
+          <ul class="pricing-features">
+            <li>Unlimited room & defect documentation</li>
+            <li>Indelible GPS timestamp evidence watermarks</li>
+            <li>Formal Move-In Condition PDF Dossier</li>
+            <li>Side-by-Side Move-Out Defense Dossier</li>
+            <li>Statutory Demand Letter Generator</li>
+            <li>Buy another pass anytime on the same device</li>
+          </ul>
+        </div>
+
+        <!-- Annual Pass -->
+        <div class="pricing-card">
+          <div class="pricing-title">Annual Unlimited Pass</div>
+          <div class="pricing-price">$19.99 <span>/ year</span></div>
+          <div class="pricing-desc">Unlimited rentals for frequent movers, college students & roommates.</div>
+          <ul class="pricing-features">
+            <li>Everything in Single Lease Pass</li>
+            <li>Unlimited rental properties</li>
+            <li>Ideal for travel nurses & annual movers</li>
+            <li>Continuous 50-state statute updates</li>
+            <li>Family / Roommate device synchronization</li>
+            <li>Priority developer email support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="terms.html">Terms of Service & EULA</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="mailto:support@landlordproof.com">support@landlordproof.com</a>
+      </div>
+      <p>&copy; 2026 LandlordProof. All rights reserved.</p>
+      <p class="legal-notice">
+        Notice: LandlordProof provides condition documentation software, photographic timestamp watermarking, and statutory reference information. LandlordProof is not a law firm and does not provide legal advice or legal representation. Consult a licensed attorney in your state for formal dispute resolution.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
