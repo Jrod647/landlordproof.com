@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LandlordProof • Move-In & Move-Out Evidence Vault for Tenants</title>
-  <meta name="description" content="Protect your security deposit with tamper-verified GPS timestamp evidence photos, 50-state statutory demand letters, and courtroom-ready PDF dossiers.">
-  <link rel="icon" type="image/png" href="assets/icon.png">
+  <meta name="description" content="Protect your security deposit with tamper-verified GPS timestamp evidence photos, 50-state statutory demand letters, and courtroom-ready PDF dossiers. Now Live on Google Play!">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   
   <!-- Open Graph / Meta -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://landlordproof.com/">
   <meta property="og:title" content="LandlordProof • Move-In & Move-Out Evidence Vault for Tenants">
-  <meta property="og:description" content="Protect your security deposit with tamper-verified GPS timestamp evidence photos, 50-state statutory demand letters, and courtroom-ready PDF dossiers.">
+  <meta property="og:description" content="Protect your security deposit with tamper-verified GPS timestamp evidence photos, 50-state statutory demand letters, and courtroom-ready PDF dossiers. Now Live on Google Play!">
   <meta property="og:image" content="https://landlordproof.com/assets/hero_banner.jpg">
 
   <style>
@@ -92,6 +92,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 24px;
     }
 
     .logo-container {
@@ -103,6 +104,7 @@
       font-weight: 800;
       font-size: 21px;
       letter-spacing: -0.01em;
+      flex-shrink: 0;
     }
 
     .logo-img {
@@ -115,7 +117,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 26px;
+      gap: 24px;
     }
 
     .nav-links a {
@@ -124,6 +126,7 @@
       font-size: 14.5px;
       font-weight: 500;
       transition: color 0.2s;
+      white-space: nowrap;
     }
 
     .nav-links a:hover {
@@ -705,11 +708,19 @@
       color: #64748B;
     }
 
+    @media (max-width: 1080px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .nav-links { gap: 12px; }
+    }
     @media (max-width: 768px) {
       .hero-actions { flex-direction: column; align-items: stretch; }
       .btn-store { width: 100%; justify-content: center; }
-      .nav-links a:not(.nav-cta) { display: none; }
       .screenshots-scroll { grid-template-columns: 1fr; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
     }
   </style>
 </head>
@@ -723,18 +734,21 @@
   <header>
     <div class="container nav">
       <a href="/" class="logo-container">
-        <img src="assets/icon.png" alt="LandlordProof Logo" class="logo-img">
+        <img src="/assets/logo.png" onerror="this.onerror=null; this.src='assets/logo.png';" alt="LandlordProof Logo" class="logo-img">
         <span>LandlordProof</span>
       </a>
       <div class="nav-links">
         <a href="#tour">App Tour</a>
         <a href="#how-it-works">How It Works</a>
         <a href="#features">Features</a>
-        <a href="#passes">Lease Passes</a>
+        <a href="#free">100% Free</a>
         <a href="#faq">FAQ</a>
-        <a href="terms.html">Terms</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="mailto:support@landlordproof.com" class="nav-cta">Contact Support</a>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="https://apps.apple.com/app/landlordproof/id6829143771" target="_blank" rel="noopener noreferrer" class="nav-cta" style="background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.25); margin-left: 8px; color: #fff;">App Store </a>
+        <a href="https://play.google.com/store/apps/details?id=com.landlordproof.app" target="_blank" rel="noopener noreferrer" class="nav-cta" style="background: linear-gradient(135deg, #00C853, #00E676); margin-left: 8px; color: #fff;">Google Play ▶</a>
+        <a href="/app" class="nav-cta" style="background: linear-gradient(135deg, #F26626, #FF8C42); margin-left: 8px;">Launch Web App 🚀</a>
+        <a href="mailto:support@landlordproof.com" style="margin-left: 12px; font-size: 14px; color: var(--text-muted); text-decoration: none;">Support</a>
       </div>
     </div>
   </header>
@@ -742,14 +756,17 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <div class="hero-badge">🛡️ Security Deposit Defense Software</div>
+      <div class="hero-badge" style="background: rgba(0, 230, 118, 0.12); border-color: rgba(0, 230, 118, 0.35); color: #00E676;">
+        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#00E676; box-shadow:0 0 10px #00E676; margin-right:8px; animation: pulse 2s infinite;"></span>
+        <span>Now Live on the App Store & Google Play • 100% On-Device Evidence Vault</span>
+      </div>
       <h1>Protect Your $2,000 Deposit With Indelible Evidence</h1>
       <p>The average security deposit deduction is $650. LandlordProof burns atomic timestamps and GPS coordinates directly into evidence pixels to prove pre-existing rental conditions on Day 1.</p>
       
       <!-- Store Buttons -->
       <div class="hero-actions">
         <!-- Google Play -->
-        <a href="#passes" class="btn-store">
+        <a href="https://play.google.com/store/apps/details?id=com.landlordproof.app" target="_blank" rel="noopener noreferrer" class="btn-store" style="border-color: rgba(0, 230, 118, 0.45); background: rgba(0, 230, 118, 0.08);">
           <svg viewBox="0 0 24 24" fill="none">
             <path d="M3.609 1.814L13.792 12 3.61 22.186a2.404 2.404 0 0 1-.61-1.636V3.45c0-.623.224-1.205.61-1.636z" fill="#00E676"/>
             <path d="M14.842 13.05l2.368-2.368-11.83-6.83 9.462 9.198z" fill="#FFD54F"/>
@@ -757,19 +774,32 @@
             <path d="M16.227 13.563l3.208 1.852a1.868 1.868 0 0 0 0-3.238l-3.208 1.852z" fill="#00B0FF"/>
           </svg>
           <div class="btn-text">
-            <span class="btn-sub">Available For</span>
-            <span class="btn-main">Android / Google Play</span>
+            <span class="btn-sub">Get It On</span>
+            <span class="btn-main">Google Play</span>
           </div>
         </a>
 
         <!-- Apple App Store -->
-        <a href="#passes" class="btn-store">
+        <a href="https://apps.apple.com/app/landlordproof/id6829143771" target="_blank" rel="noopener noreferrer" class="btn-store" style="border-color: rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.08);">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.13.64-2.79 1.41-.57.66-.99 1.72-.94 2.76 1.07.08 2.11-.55 2.72-1.3"/>
           </svg>
           <div class="btn-text">
-            <span class="btn-sub">Available For</span>
-            <span class="btn-main">iOS / Apple App Store</span>
+            <span class="btn-sub">Download On</span>
+            <span class="btn-main">Apple App Store</span>
+          </div>
+        </a>
+
+        <!-- Web App -->
+        <a href="/app" class="btn-store" style="border-color: rgba(242, 102, 38, 0.45); background: rgba(242, 102, 38, 0.12);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F26626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <div class="btn-text">
+            <span class="btn-sub" style="color: #F26626;">Browser Version</span>
+            <span class="btn-main">Launch Web App</span>
           </div>
         </a>
       </div>
@@ -788,7 +818,7 @@
       <!-- High-Resolution Showcase Banner -->
       <div class="hero-mockup-wrapper">
         <div class="hero-mockup-inner">
-          <img src="assets/hero_banner.jpg" alt="LandlordProof App Interface Showcase" loading="eager">
+          <img src="/assets/hero_banner.jpg" alt="LandlordProof App Interface Showcase" loading="eager">
         </div>
       </div>
 
@@ -825,7 +855,7 @@
       <!-- Screen 1 -->
       <div class="screen-card">
         <div class="screen-image-container">
-          <img src="assets/screen_countdown.jpg" alt="72-Hour Notice Countdown Screen" loading="lazy">
+          <img src="/assets/screen_countdown.jpg" alt="72-Hour Notice Countdown Screen" loading="lazy">
         </div>
         <div class="screen-card-content">
           <span class="screen-badge">Step 1 • Move-In</span>
@@ -837,7 +867,7 @@
       <!-- Screen 2 -->
       <div class="screen-card">
         <div class="screen-image-container">
-          <img src="assets/screen_gps_timestamp.jpg" alt="GPS & Timestamp Camera Watermark" loading="lazy">
+          <img src="/assets/screen_gps_timestamp.jpg" alt="GPS & Timestamp Camera Watermark" loading="lazy">
         </div>
         <div class="screen-card-content">
           <span class="screen-badge">Step 2 • Evidence</span>
@@ -849,7 +879,7 @@
       <!-- Screen 3 -->
       <div class="screen-card">
         <div class="screen-image-container">
-          <img src="assets/screen_deduction_traps.jpg" alt="Room Deduction Trap Checklists" loading="lazy">
+          <img src="/assets/screen_deduction_traps.jpg" alt="Room Deduction Trap Checklists" loading="lazy">
         </div>
         <div class="screen-card-content">
           <span class="screen-badge">Step 3 • Checklists</span>
@@ -861,7 +891,7 @@
       <!-- Screen 4 -->
       <div class="screen-card">
         <div class="screen-image-container">
-          <img src="assets/screen_state_laws.jpg" alt="50-State Statutory Laws & Demand Letters" loading="lazy">
+          <img src="/assets/screen_state_laws.jpg" alt="50-State Statutory Laws & Demand Letters" loading="lazy">
         </div>
         <div class="screen-card-content">
           <span class="screen-badge">Step 4 • Legal Rights</span>
@@ -873,7 +903,7 @@
       <!-- Screen 5 -->
       <div class="screen-card">
         <div class="screen-image-container">
-          <img src="assets/screen_courtroom_pdf.jpg" alt="Courtroom-Ready PDF Dossier Export" loading="lazy">
+          <img src="/assets/screen_courtroom_pdf.jpg" alt="Courtroom-Ready PDF Dossier Export" loading="lazy">
         </div>
         <div class="screen-card-content">
           <span class="screen-badge">Step 5 • Defense</span>
@@ -958,42 +988,54 @@
     </div>
   </section>
 
-  <!-- Lease Passes Section -->
-  <section class="container" id="passes">
+  <!-- 100% Free Section -->
+  <section class="container" id="free">
     <div class="pricing-section">
-      <h2>Simple, Transparent Protection</h2>
-      <p style="color: var(--text-muted); margin-top: 8px;">No hidden fees. Full lifetime export for each rental.</p>
+      <div class="hero-badge" style="background: rgba(0, 230, 118, 0.12); border-color: rgba(0, 230, 118, 0.35); color: #00E676; margin: 0 auto 16px;">
+        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#00E676; margin-right:8px;"></span>
+        <span>100% Free For All Tenants</span>
+      </div>
+      <h2>Zero Paywalls. Zero Subscriptions.</h2>
+      <p style="color: var(--text-muted); margin-top: 8px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Every renter deserves courtroom-grade evidence to protect their security deposit. LandlordProof is completely free, supported by non-intrusive sponsor ads.
+      </p>
 
-      <div class="pricing-grid">
-        <!-- Single Lease Pass -->
-        <div class="pricing-card featured">
-          <div class="pricing-badge">Most Popular</div>
-          <div class="pricing-title">Single Lease Pass</div>
-          <div class="pricing-price">$9.99 <span>one-time</span></div>
-          <div class="pricing-desc">Lifetime protection & full PDF export for your current rental lease.</div>
+      <div class="pricing-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+        <!-- 100% Free Standard Card -->
+        <div class="pricing-card featured" style="border-color: #00E676; box-shadow: 0 4px 30px rgba(0, 230, 118, 0.18);">
+          <div class="pricing-badge" style="background: linear-gradient(135deg, #00C853, #00E676);">100% Free Forever</div>
+          <div class="pricing-title">Full Protection Vault</div>
+          <div class="pricing-price" style="color: #00E676;">$0 <span>free forever</span></div>
+          <div class="pricing-desc">Everything needed to document, timestamp, and defend your rental security deposit.</div>
           <ul class="pricing-features">
-            <li>Unlimited room & defect documentation</li>
-            <li>Indelible GPS timestamp evidence watermarks</li>
-            <li>Formal Move-In Condition PDF Dossier</li>
-            <li>Side-by-Side Move-Out Defense Dossier</li>
-            <li>Statutory Demand Letter Generator</li>
-            <li>Buy another pass anytime on the same device</li>
+            <li>Unlimited rental properties & move-in inspections</li>
+            <li>Indelible atomic GPS & timestamp watermark seals</li>
+            <li>Interactive room checklists with 40+ landlord trap warnings</li>
+            <li>Formal Move-In Condition PDF Dossier export</li>
+            <li>Side-by-Side Move-Out Comparison Defense Dossier</li>
+            <li>50-State Statutory Demand Letter Generator</li>
+            <li>100% offline-first local device privacy</li>
           </ul>
+          <div style="display: flex; gap: 10px; margin-top: auto;">
+            <a href="https://apps.apple.com/app/landlordproof/id6829143771" target="_blank" rel="noopener noreferrer" class="btn" style="flex: 1; text-align: center; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); font-size: 13.5px; padding: 12px 14px;">App Store </a>
+            <a href="https://play.google.com/store/apps/details?id=com.landlordproof.app" target="_blank" rel="noopener noreferrer" class="btn" style="flex: 1; text-align: center; background: linear-gradient(135deg, #00C853, #00E676); font-size: 13.5px; padding: 12px 14px;">Google Play ▶</a>
+          </div>
         </div>
 
-        <!-- Annual Pass -->
+        <!-- Ad-Supported Transparency Card -->
         <div class="pricing-card">
-          <div class="pricing-title">Annual Unlimited Pass</div>
-          <div class="pricing-price">$19.99 <span>/ year</span></div>
-          <div class="pricing-desc">Unlimited rentals for frequent movers, college students & roommates.</div>
+          <div class="pricing-title">How It Stays Free</div>
+          <div class="pricing-price" style="font-size: 26px; color: var(--accent);">Ad-Supported <span>(Google AdMob)</span></div>
+          <div class="pricing-desc">Fair, non-intrusive monetization that keeps the app free for renters while preserving privacy.</div>
           <ul class="pricing-features">
-            <li>Everything in Single Lease Pass</li>
-            <li>Unlimited rental properties</li>
-            <li>Ideal for travel nurses & annual movers</li>
-            <li>Continuous 50-state statute updates</li>
-            <li>Multi-device synchronization</li>
-            <li>Priority developer email support</li>
+            <li>No credit cards, accounts, or payment details required</li>
+            <li>Clean, non-intrusive banner ads on dashboard screens</li>
+            <li>Short optional sponsor video when exporting full PDF dossiers</li>
+            <li>Instant offline bypass so exports are never blocked without internet</li>
+            <li>Zero sale of personal data, photos, or rental info</li>
+            <li>Strict compliance with Apple & Google Play Data Safety policies</li>
           </ul>
+          <a href="/terms" class="btn" style="margin-top: auto; text-align: center; background: var(--card-bg); border: 1px solid var(--card-border); font-size: 13.5px; padding: 12px 14px; text-decoration: none; color: #fff;">Read Terms of Service &rarr;</a>
         </div>
       </div>
     </div>
@@ -1022,9 +1064,9 @@
       </details>
 
       <details class="faq-item">
-        <summary class="faq-summary">If I purchase a Single Lease Pass, how do I purchase another lease pass later?</summary>
+        <summary class="faq-summary">Is LandlordProof really 100% free?</summary>
         <div class="faq-content">
-          Single Lease Passes are configured as consumable in-app purchases. Whenever you move to a new rental property, you can simply tap "Get Lease Pass" to purchase a pass for your new home right on the same device without needing a subscription.
+          Yes! LandlordProof is completely free with no subscriptions, paywalls, or in-app purchases. All features—including timestamp watermarks, room defect checklists, 50-state legal statutes, and courtroom PDF dossier generation—are accessible for free, supported by non-intrusive sponsor ads.
         </div>
       </details>
 
@@ -1049,8 +1091,39 @@
     <div class="cta-banner">
       <h2>Don't Leave Your $2,000 Deposit to Chance</h2>
       <p>Document your rental condition in under 15 minutes and lock in peace of mind for the duration of your lease.</p>
-      <div class="hero-actions" style="margin-bottom: 0;">
-        <a href="#passes" class="nav-cta" style="padding: 14px 28px; font-size: 16px;">Get LandlordProof Today</a>
+      <div class="hero-actions" style="margin-bottom: 0; justify-content: center;">
+        <a href="https://apps.apple.com/app/landlordproof/id6829143771" target="_blank" rel="noopener noreferrer" class="btn-store" style="border-color: rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.08);">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 1.01-2.87-.96.04-2.13.64-2.79 1.41-.57.66-.99 1.72-.94 2.76 1.07.08 2.11-.55 2.72-1.3"/>
+          </svg>
+          <div class="btn-text">
+            <span class="btn-sub">Download On</span>
+            <span class="btn-main">Apple App Store</span>
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.landlordproof.app" target="_blank" rel="noopener noreferrer" class="btn-store" style="border-color: rgba(0, 230, 118, 0.45); background: rgba(0, 230, 118, 0.1);">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M3.609 1.814L13.792 12 3.61 22.186a2.404 2.404 0 0 1-.61-1.636V3.45c0-.623.224-1.205.61-1.636z" fill="#00E676"/>
+            <path d="M14.842 13.05l2.368-2.368-11.83-6.83 9.462 9.198z" fill="#FFD54F"/>
+            <path d="M14.842 14.948l-9.462 9.2 11.83-6.83-2.368-2.37z" fill="#FF1744"/>
+            <path d="M16.227 13.563l3.208 1.852a1.868 1.868 0 0 0 0-3.238l-3.208 1.852z" fill="#00B0FF"/>
+          </svg>
+          <div class="btn-text">
+            <span class="btn-sub">Download On</span>
+            <span class="btn-main">Google Play</span>
+          </div>
+        </a>
+        <a href="/app" class="btn-store" style="border-color: rgba(242, 102, 38, 0.45); background: rgba(242, 102, 38, 0.12);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#F26626" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <div class="btn-text">
+            <span class="btn-sub" style="color: #F26626;">Browser Version</span>
+            <span class="btn-main">Launch Web App</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -1060,13 +1133,16 @@
     <div class="container">
       <div class="footer-links">
         <a href="/">Home</a>
+        <a href="https://apps.apple.com/app/landlordproof/id6829143771" target="_blank" rel="noopener noreferrer" style="color: #fff; font-weight: 700;">Apple App Store </a>
+        <a href="https://play.google.com/store/apps/details?id=com.landlordproof.app" target="_blank" rel="noopener noreferrer" style="color: #00E676; font-weight: 700;">Google Play Store ▶</a>
         <a href="#tour">App Tour</a>
         <a href="#how-it-works">How It Works</a>
         <a href="#features">Features</a>
-        <a href="#passes">Lease Passes</a>
+        <a href="#free">100% Free</a>
         <a href="#faq">FAQ</a>
-        <a href="terms.html">Terms of Service & EULA</a>
-        <a href="privacy.html">Privacy Policy</a>
+        <a href="/app" style="color: var(--accent); font-weight: 700;">Launch Web App 🚀</a>
+        <a href="/terms">Terms of Service & EULA</a>
+        <a href="/privacy">Privacy Policy</a>
         <a href="mailto:support@landlordproof.com">support@landlordproof.com</a>
       </div>
       <p>&copy; 2026 LandlordProof. All rights reserved. 100% On-Device Private Evidence Vault.</p>
