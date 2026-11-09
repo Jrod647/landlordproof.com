@@ -1,10 +1,10 @@
 RewriteEngine On
 
-# Ensure app-ads.txt is served directly as plaintext for Google AdMob crawlers
-<Files "app-ads.txt">
+# Ensure app-ads.txt and ads.txt are served directly as plaintext for Google AdMob and AdSense crawlers
+<FilesMatch "^(app-)?ads\.txt$">
     ForceType text/plain
     Header set Content-Type "text/plain; charset=utf-8"
-</Files>
+</FilesMatch>
 
 # Clean URL rewriting for HTML pages
 RewriteCond %{REQUEST_FILENAME} !-f

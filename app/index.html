@@ -8,6 +8,10 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8266340741180240" crossorigin="anonymous"></script>
+
   <style>
 /* ==========================================================================
        LandlordProof Interactive Web Demo & Conversion Styles
@@ -560,6 +564,31 @@
   gap: 4px;
   font-size: 11px;
 }
+
+/* --- Google AdSense Banner In Web App --- */
+.web-ad-banner-wrapper {
+  margin: 16px 0 8px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  text-align: center;
+  overflow: hidden;
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.web-ad-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  align-self: flex-start;
+}
   </style>
 </head>
 <body>
@@ -838,6 +867,20 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Web App Sponsor / Ad Banner (Matching Mobile App Banner Placement) -->
+      <div class="web-ad-banner-wrapper no-print">
+        <div class="web-ad-tag">SPONSORED</div>
+        <ins class="adsbygoogle"
+             style="display:block; width:100%;"
+             data-ad-client="ca-pub-8266340741180240"
+             data-ad-slot="auto"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
       </div>
 
     </div>
